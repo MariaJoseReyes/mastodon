@@ -12,6 +12,7 @@
   "scripts": {
     "build:development": "cross-env RAILS_ENV=development NODE_ENV=development ./bin/webpack",
     "build:production": "cross-env RAILS_ENV=production NODE_ENV=production ./bin/webpack",
+    "build:prod": "ng build --prod",
     "fix:js": "yarn lint:js --fix",
     "fix:json": "prettier --write \"**/*.{json,json5}\"",
     "fix:md": "prettier --write \"**/*.md\"",

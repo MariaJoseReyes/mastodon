@@ -10,18 +10,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Use Node.js 10.x
+      - name: Use Node.js 10.x with Corepack
         uses: actions/setup-node@v1
         with:
           node-version: 10.x
+          cache: 'npm'
+
+      - name: Enable Corepack
+        run: npx corepack enable
 
       - name: Install dependencies and build
         run: |
-          yarn install
+          npx corepack yarn install
           npm run build
 
       - name: Install Lighthouse CI
-        run: npm install -g @lhci/cli@0.3.x
+        run: npx corepack npm install -g @lhci/cli@0.3.x
 
       - name: Run Lighthouse CI
-        run: lhci autorun --upload.target=temporary-public-storage || echo "LHCI failed"
+        run: npx corepack lhci autorun --upload.target=temporary-public-storage || echo "LHCI failed"
